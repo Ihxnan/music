@@ -230,67 +230,123 @@ class MusicPlayer {
     // 设置事件监听器
     setupEventListeners() {
         // 播放/暂停按钮
-        document.getElementById('playPauseBtn').addEventListener('click', () => {
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        playPauseBtn.addEventListener('click', () => {
             this.togglePlayPause();
         });
-        
+        // 添加触摸支持
+        playPauseBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.togglePlayPause();
+        });
+
         // 上一首
-        document.getElementById('prevBtn').addEventListener('click', () => {
+        const prevBtn = document.getElementById('prevBtn');
+        prevBtn.addEventListener('click', () => {
             this.playPrevious();
         });
-        
+        prevBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.playPrevious();
+        });
+
         // 下一首
-        document.getElementById('nextBtn').addEventListener('click', () => {
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
             this.playNext();
         });
-        
+        nextBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.playNext();
+        });
+
         // 随机播放
-        document.getElementById('shuffleBtn').addEventListener('click', () => {
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const shuffleControlBtn = document.getElementById('shuffleControlBtn');
+        
+        shuffleBtn.addEventListener('click', () => {
+            this.toggleShuffle();
+        });
+        shuffleBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
             this.toggleShuffle();
         });
         
-        document.getElementById('shuffleControlBtn').addEventListener('click', () => {
+        shuffleControlBtn.addEventListener('click', () => {
             this.toggleShuffle();
         });
-        
+        shuffleControlBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.toggleShuffle();
+        });
+
         // 循环模式
-        document.getElementById('repeatBtn').addEventListener('click', () => {
+        const repeatBtn = document.getElementById('repeatBtn');
+        repeatBtn.addEventListener('click', () => {
             this.toggleRepeat();
         });
-        
+        repeatBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.toggleRepeat();
+        });
+
         // 音量控制
-        document.getElementById('volumeSlider').addEventListener('input', (e) => {
+        const volumeSlider = document.getElementById('volumeSlider');
+        volumeSlider.addEventListener('input', (e) => {
             this.audioPlayer.volume = e.target.value / 100;
             this.updateVolumeIcon(e.target.value);
         });
-        
-        // 进度条
+
+        // 进度条 - 同时支持点击和触摸
         const progress = document.querySelector('.progress');
-        progress.addEventListener('click', (e) => {
+        const handleProgressSeek = (e) => {
             const rect = progress.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
             this.audioPlayer.currentTime = percent * this.audioPlayer.duration;
+        };
+
+        progress.addEventListener('click', handleProgressSeek);
+        progress.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            handleProgressSeek(e);
         });
-        
+
+        // 进度条拖动支持
+        let isDragging = false;
+        progress.addEventListener('mousedown', () => isDragging = true);
+        progress.addEventListener('touchstart', () => isDragging = true);
+        document.addEventListener('mouseup', () => isDragging = false);
+        document.addEventListener('touchend', () => isDragging = false);
+        progress.addEventListener('mousemove', (e) => {
+            if (isDragging) handleProgressSeek(e);
+        });
+        progress.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                handleProgressSeek(e);
+            }
+        });
+
         // 音频事件
         this.audioPlayer.addEventListener('timeupdate', () => {
             this.updateProgress();
         });
-        
+
         this.audioPlayer.addEventListener('ended', () => {
             this.onTrackEnd();
         });
-        
+
         this.audioPlayer.addEventListener('loadedmetadata', () => {
             this.updateTotalTime();
         });
-        
+
         this.audioPlayer.addEventListener('error', () => {
             console.error('音频加载失败:', this.currentTrack);
             // 自动跳到下一首
             this.playNext();
         });
-        
+
         // 搜索功能
         const searchInput = document.getElementById('searchInput');
         let searchTimeout;
@@ -300,10 +356,28 @@ class MusicPlayer {
                 this.searchMusic(e.target.value);
             }, 300);
         });
-        
+
         // 播放列表按钮
-        document.getElementById('playlistBtn').addEventListener('click', () => {
+        const playlistBtn = document.getElementById('playlistBtn');
+        playlistBtn.addEventListener('click', () => {
             this.showPlaylist();
+        });
+        playlistBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.showPlaylist();
+        });
+
+        // 防止移动端双击缩放
+        document.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        // 处理移动端屏幕方向变化
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                // 重新计算布局
+                window.scrollTo(0, 0);
+            }, 100);
         });
     }
     
