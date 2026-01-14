@@ -112,7 +112,7 @@ class MusicPlayer {
         });
     }
     
-    // 按艺术家筛选
+    // 按歌手筛选
     filterByArtist(artist) {
         const title = document.getElementById('currentViewTitle');
         if (artist === 'all') {
@@ -511,7 +511,7 @@ class MusicPlayer {
             searchItem.className = 'search-item';
             searchItem.innerHTML = `
                 <div class="song-title">${song.title}</div>
-                <div class="song-artist">${song.artist}</div>
+                <div class="song-artist">歌手: ${song.artist}</div>
             `;
             searchItem.addEventListener('click', () => {
                 this.playSong(song);

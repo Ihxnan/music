@@ -136,7 +136,7 @@ player/
 
 ## 注意事项
 
-1. 音乐文件需要放在 `/home/ihxnan/Music/` 目录下的艺术家文件夹中
+1. 音乐文件需要放在 `/home/ihxnan/Music/` 目录下的歌手文件夹中
 2. 支持的音频格式: MP3、OGG、FLAC、M4A、WAV
 3. 服务器默认运行在 8000 端口
 4. 按 `Ctrl+C` 停止服务器

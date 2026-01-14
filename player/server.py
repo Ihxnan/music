@@ -101,7 +101,7 @@ class MusicRequestHandler(SimpleHTTPRequestHandler):
             if file_name.startswith(f"{artist_name} - "):
                 title = file_name.replace(f"{artist_name} - ", "")
             elif f"_{artist_name}_" in file_name:
-                # 格式: 歌曲名_艺术家_专辑_比特率
+                # 格式: 歌曲名_歌手_专辑_比特率
                 parts = file_name.split(f"_{artist_name}_")
                 title = parts[0]
             elif " - " in file_name:

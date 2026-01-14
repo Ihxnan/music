@@ -121,7 +121,7 @@ body,
     color: #666;
 }
 
-/* 艺术家列表 */
+/* 歌手列表 */
 .artist-list {
     flex: 1;
     overflow-y: auto;
