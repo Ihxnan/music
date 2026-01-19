@@ -1,8 +1,0 @@
-127.0.0.1 - - [14/Jan/2026 17:42:41] "GET / HTTP/1.1" 200 -
-127.0.0.1 - - [14/Jan/2026 17:42:41] code 404, message File not found
-127.0.0.1 - - [14/Jan/2026 17:42:41] "GET /favicon.ico HTTP/1.1" 404 -
-127.0.0.1 - - [14/Jan/2026 17:42:48] "GET /player/ HTTP/1.1" 200 -
-127.0.0.1 - - [14/Jan/2026 17:42:48] "GET /player/styles.css HTTP/1.1" 200 -
-127.0.0.1 - - [14/Jan/2026 17:42:48] "GET /player/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [14/Jan/2026 17:43:05] "GET /player/ HTTP/1.1" 304 -
-127.0.0.1 - - [14/Jan/2026 17:43:05] "GET /player/app.js HTTP/1.1" 304 -
