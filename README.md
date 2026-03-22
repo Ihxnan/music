@@ -4,8 +4,8 @@
 
 ## 📊 收藏统计
 
-- **音乐文件总数**: 113 首
-- **艺术家数量**: 22 位
+- **音乐文件总数**: 130 首
+- **艺术家数量**: 29 位
 - **音频格式**: MP3、OGG、FLAC
 
 ## 🎵 艺术家列表
@@ -13,7 +13,9 @@
 | 艺术家 | 中文名 | 歌曲数量 |
 |--------|--------|----------|
 | Ai Higuchi | 日向惠 | 1 |
+| ano | 幾田りら、ano | 1 |
 | asmi | asmi | 1 |
+| Ed Sheeran | Ed Sheeran | 4 |
 | fripSide | fripSide | 1 |
 | Hikaru Utada | 宇多田光 | 1 |
 | King | King Gnu | 1 |
@@ -22,20 +24,41 @@
 | MARY | MARY | 1 |
 | MIKU | 初音未来 | 6 |
 | Myuk | Myuk | 1 |
+| One Republic | One Republic | 3 |
 | RADWIMPS | RADWIMPS | 1 |
 | Rokudenashi | ロクデナシ | 3 |
 | Sawano Hiroyuki | 澤野弘之 | 1 |
-| Sayuri | さユり | 5 |
+| Sayuri | さユり | 6 |
 | SPYAIR | SPYAIR | 1 |
 | TK from Ling tosite sigure | TK from 凛冽时雨 | 1 |
-| TOGENASHI TOGEARI | TOGENASHI TOGEARI | 1 |
+| TOGENASHI TOGEARI | トゲナシトゲアリ | 2 |
 | tuki. | tuki. | 3 |
+| TUYU | ツユ | 9 |
+| utatronic | utatronic | 4 |
 | yama | yama | 3 |
-| YOASOBI | YOASOBI | 11 |
-| ZUTOMAYO | ずっと真夜中でいいのに。 | 65 |
-| ヨルシカ | ヨルシカ | 3 |
+| YOASOBI | YOASOBI | 17 |
+| ZUTOMAYO | ずっと真夜中でいいのに。 | 42 |
+| カンザキイオリ | カンザキイオリ | 1 |
+| ジェニーハイ | ジェニーハイ | 1 |
+| ヨルシカ | ヨルシカ | 12 |
 
-## 🎧 在线播放
+## 🎧 音乐播放
+
+### 本地播放器
+
+项目包含一个功能完备的本地 Web 音乐播放器，支持在线播放、搜索、下载等功能。
+
+**启动方法：**
+```bash
+cd /home/ihxnan/Music/player
+./start.sh
+```
+
+访问：http://localhost:8000
+
+详细说明请参考 `player/README.md`
+
+### 在线播放
 
 您可以通过以下链接在线播放收藏的音乐：
 
@@ -47,9 +70,9 @@
 Music/
 ├── [歌手目录]/
 │   └── [歌曲文件]
+├── player/            # 本地音乐播放器
 ├── README.md          # 本文件
 ├── gdstudio.txt       # 在线播放器链接
-├── rename_folders.sh  # 文件夹重命名脚本
 └── IFLOW.md           # 项目详细文档
 ```
 
@@ -94,6 +117,7 @@ xdg-open "/home/ihxnan/Music/[艺术家]/[歌曲文件]"
 1. 在对应的艺术家目录下放置新文件
 2. 或创建新的艺术家目录
 3. 遵循现有的命名规范以保持一致性
+4. 本地播放器会自动扫描新添加的音乐文件
 
 ### 文件命名规范
 
@@ -114,12 +138,6 @@ xdg-open "/home/ihxnan/Music/[艺术家]/[歌曲文件]"
 [序号] [歌曲名].[扩展名]
 ```
 示例：`02 あの夢をなぞって.flac`
-
-### 批量重命名文件夹
-使用 `rename_folders.sh` 脚本批量重命名艺术家文件夹：
-```bash
-bash /home/ihxnan/Music/rename_folders.sh
-```
 
 ## 📝 音频格式
 
